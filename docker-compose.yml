@@ -40,7 +40,7 @@ services:
 
   api:
     <<: *backend
-    command: rails server -b 0.0.0.0
+    command: bin/dev
 
   # Dependencies
 
