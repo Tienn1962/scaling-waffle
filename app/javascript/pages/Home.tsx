@@ -2,17 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default () => (
-  <main>
-    <h1 className="text-3xl font-bold">
-      Welcome to the Coolest Recipes<sup>tm</sup> on the Internet!
-    </h1>
+  <main class="flex flex-col items-center justify-center h-screen">
+    <h1 className="p-4 text-3xl font-bold">Welcome to Scaling Waffle</h1>
     <Link
       to="/recipes"
-      className="button button-lg"
+      className="btn btn-lg"
       role="button"
     >
       View Recipes
     </Link>
-    <button className="button button-lg">I dont do anything!</button>
   </main>
 );
