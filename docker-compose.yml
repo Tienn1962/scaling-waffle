@@ -1,0 +1,73 @@
+---
+
+version: '3.9'
+
+volumes:
+  psql-data:
+
+networks:
+  net-database:
+  net-api:
+
+x-common-config:
+  &common-config
+  stdin_open: true
+  tty: true
+  init: true
+  stop_signal: SIGTERM
+
+x-backend: &backend
+  <<: *common-config
+  build:
+    context: .
+    target: dev-api
+  depends_on:
+    - database
+  networks:
+    - net-database
+    - net-api
+  volumes:
+    - .:/home/rails
+  env_file: .env
+  ports:
+    - 3000:3000
+  entrypoint: ./entrypoint.sh
+
+
+services:
+
+  # Applications
+
+  api:
+    <<: *backend
+    command: rails server -b 0.0.0.0
+
+  # Dependencies
+
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - psql-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - net-database
+
+  # Tests
+
+  api-test:
+    <<: *backend
+    environment:
+      - RAILS_ENV=test
+    command: bundle exec rspec
+    profiles:
+      - test
+
+  # Utilitaries
+
+  api-exec:
+    <<: *backend
+    profiles:
+     - utils
