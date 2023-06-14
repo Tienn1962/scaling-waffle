@@ -64,4 +64,16 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'rspec-rails', '~> 6.0.0'
+end
+
+group :test do
+  gem 'database_cleaner-active_record'
+  gem 'fuubar'
+  gem 'selenium-webdriver'
+  gem 'simplecov'
+  gem 'webdrivers'
 end
