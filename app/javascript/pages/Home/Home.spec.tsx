@@ -15,7 +15,7 @@ it("renders the home page", () => {
 });
 
 it("links to the list of recipes", () => {
-  const component = render(
+  const _ = render(
     <MemoryRouter>
       <Home />
     </MemoryRouter>
