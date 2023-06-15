@@ -35,3 +35,5 @@
 
 /node_modules
 .local/
+.irb_history
+.cache/

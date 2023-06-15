@@ -57,17 +57,10 @@ services:
 
   # Tests
 
-  api-test:
+  tests:
     <<: *backend
     environment:
       - RAILS_ENV=test
-    command: bundle exec rspec
+    entrypoint: ./entrypoint.test.sh
     profiles:
       - test
-
-  # Utilitaries
-
-  api-exec:
-    <<: *backend
-    profiles:
-     - utils

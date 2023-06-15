@@ -1,24 +1,22 @@
-# README
+# Scaling Waffle
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+Everything is set up with Docker, you should be able to simply run :
 
-* Ruby version
+```sh
+docker compose up
 
-* System dependencies
+# set up the database
+docker compose exec api sh -c 'rails db:setup'
+```
 
-* Configuration
+The application will then be available at `localhost:3000`.
 
-* Database creation
+## Testing
 
-* Database initialization
+To run tests, a specific docker compose service exists :
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+docker compose run --rm tests
+```

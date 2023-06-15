@@ -14,10 +14,10 @@ VOLUME [ "${GEM_HOME}" ]
 
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
-
 FROM alpine-ruby as dev-api
 
 USER rails
 
-RUN bundle install
+RUN bin/bundle lock --add-platform x86_64-linux
+RUN bundle
+RUN yarn
