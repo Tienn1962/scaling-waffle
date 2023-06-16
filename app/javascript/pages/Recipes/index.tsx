@@ -43,6 +43,10 @@ export default () => {
     setSearchValue("");
   };
 
+  const removeFilter = (filter: string) => {
+    setSearchFilters((current) => [...current.filter((f) => f !== filter)]);
+  };
+
   useEffect(() => {
     fetchRecipes();
   }, [currentPage, searchFilters]);
@@ -71,7 +75,10 @@ export default () => {
         </button>
       </form>
       <div className="m-10">
-        <IngredientBadges badges={searchFilters} />
+        <IngredientBadges
+          badges={searchFilters}
+          onClick={removeFilter}
+        />
       </div>
 
       <PaginatedList

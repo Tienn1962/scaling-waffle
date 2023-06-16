@@ -8,7 +8,9 @@ exports[`renders a single badge with 'any' when passed an empty array 1`] = `
       <div
         class="flex flex-row items-center"
       >
-        <span>
+        <span
+          class="mr-3"
+        >
           Ingredients :
         </span>
         <div
@@ -23,7 +25,9 @@ exports[`renders a single badge with 'any' when passed an empty array 1`] = `
     <div
       class="flex flex-row items-center"
     >
-      <span>
+      <span
+        class="mr-3"
+      >
         Ingredients :
       </span>
       <div
@@ -95,22 +99,81 @@ exports[`renders the badges 1`] = `
       <div
         class="flex flex-row items-center"
       >
-        <span>
+        <span
+          class="mr-3"
+        >
           Ingredients :
         </span>
         <div
-          class="badge bg-black"
+          class="badge badge-info m-2"
         >
+          <button
+            class="btn btn-xs btn-ghost"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 18L18 6M6 6l12 12"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
           bread
         </div>
         <div
-          class="badge bg-black"
+          class="badge badge-info m-2"
         >
+          <button
+            class="btn btn-xs btn-ghost"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 18L18 6M6 6l12 12"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
           chicken
         </div>
         <div
-          class="badge bg-black"
+          class="badge badge-info m-2"
         >
+          <button
+            class="btn btn-xs btn-ghost"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6 18L18 6M6 6l12 12"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
           egg
         </div>
       </div>
@@ -120,22 +183,81 @@ exports[`renders the badges 1`] = `
     <div
       class="flex flex-row items-center"
     >
-      <span>
+      <span
+        class="mr-3"
+      >
         Ingredients :
       </span>
       <div
-        class="badge bg-black"
+        class="badge badge-info m-2"
       >
+        <button
+          class="btn btn-xs btn-ghost"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
         bread
       </div>
       <div
-        class="badge bg-black"
+        class="badge badge-info m-2"
       >
+        <button
+          class="btn btn-xs btn-ghost"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
         chicken
       </div>
       <div
-        class="badge bg-black"
+        class="badge badge-info m-2"
       >
+        <button
+          class="btn btn-xs btn-ghost"
+        >
+          <svg
+            aria-hidden="true"
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 18L18 6M6 6l12 12"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
         egg
       </div>
     </div>
