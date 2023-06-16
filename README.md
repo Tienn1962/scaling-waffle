@@ -20,3 +20,11 @@ To run tests, a specific docker compose service exists :
 ```sh
 docker compose run --rm tests
 ```
+
+## Improvements
+
+- It would probably be a good idea to add a tsvector column to recipes
+  to drastically improve the performance of the search feature
+
+- A Next application would be more flexible to expand further, while
+  also getting some bonnus benefits (SSR, etc)
