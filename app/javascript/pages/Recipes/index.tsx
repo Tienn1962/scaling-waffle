@@ -64,7 +64,8 @@ export default () => {
           placeholder="Search a recipe by ingredient"
           value={searchValue}
           onChange={(e) => {
-            setSearchValue(e.target.value);
+            // prevent user from entering numbers
+            setSearchValue(e.target.value.replace(/[^a-z]/gi, ""));
           }}
         />
         <button
