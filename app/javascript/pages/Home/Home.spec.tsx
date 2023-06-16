@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import Home from ".";
 // needed because of the use of <Link /> on the page

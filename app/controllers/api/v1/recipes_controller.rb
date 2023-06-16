@@ -3,10 +3,7 @@
 class Api::V1::RecipesController < ApplicationController
   def index
     limit = 50
-    query = Recipe.all
-                  .includes(:ingredients)
-                  .order(:id)
-
+    query = Recipe.all.includes(:ingredients).order(:id)
     count = query.count
     recipes = query.limit(limit).offset(permitted_params[:page].to_i * limit)
 

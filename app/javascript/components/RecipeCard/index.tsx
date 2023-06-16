@@ -8,13 +8,12 @@ import {
 
 interface Props {
   title: string;
-  image_url: string;
   ratings: number;
-  prep_time: number;
-  cook_time: number;
-  author: string;
-  category: string;
+  prepTime: number;
+  cookTime: number;
   ingredients: string[];
+  image_url?: string;
+  author?: string;
 }
 
 export default (props: Props) => {
@@ -29,14 +28,16 @@ export default (props: Props) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{props.title}</h2>
-        <div className="flex">
-          <UserIcon className="h-6 w-6" />
-          <span className="pl-2">{props.author}</span>
-        </div>
+        {props.author && (
+          <div className="flex">
+            <UserIcon className="h-6 w-6" />
+            <span className="pl-2">{props.author}</span>
+          </div>
+        )}
         <div className="flex">
           <ClockIcon className="h-6 w-6" />
           <span className="pl-2">
-            {props.prep_time}m | {props.cook_time}m
+            {props.prepTime}m | {props.cookTime}m
           </span>
         </div>
         <div className="flex">

@@ -37,3 +37,4 @@
 .local/
 .irb_history
 .cache/
+coverage/

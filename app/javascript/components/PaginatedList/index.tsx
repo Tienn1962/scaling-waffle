@@ -6,7 +6,7 @@ interface Props<T> {
   data: T[];
   count: number;
   limit: number;
-  element: (datum: T) => React.ReactNode;
+  item: (datum: T) => React.ReactNode;
   onPageChange: (page: number) => void;
 }
 
@@ -18,7 +18,7 @@ export default <T,>(props: Props<T>) => {
   return (
     <>
       <div className="flex flex-row flex-wrap justify-center">
-        {props.data.map((datum) => props.element(datum))}
+        {props.data.map((datum) => props.item(datum))}
       </div>
       <div className="flex flex-row justify-center">
         <ReactPaginate

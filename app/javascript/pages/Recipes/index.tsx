@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RecipeCard from "../../components/RecipeCard";
 import PaginatedList from "../../components/PaginatedList";
+import Loading from "../../components/Loading";
 
 export default () => {
   const [loading, setLoading] = useState(false);
@@ -25,32 +26,25 @@ export default () => {
 
   return (
     <main className="m-50 flex flex-col items-center justify-center">
-      <div>
-        <PaginatedList
-          data={recipes}
-          count={count}
-          limit={limit}
-          onPageChange={fetchRecipes}
-          element={(data) => (
-            <RecipeCard
-              key={data.id}
-              title={data.title}
-              image_url={data.image_url}
-              author={data.author}
-              ratings={data.ratings}
-              prep_time={data.prep_time}
-              cook_time={data.cook_time}
-              category={data.category}
-              ingredients={data.ingredients}
-            ></RecipeCard>
-          )}
-        ></PaginatedList>
-      </div>
-      {loading && (
-        <div className="bg-neutral bg-opacity-60 min-w-full min-h-screen fixed top-0 flex justify-center">
-          <div className="loading loading-spinner loading-lg"></div>
-        </div>
-      )}
+      <PaginatedList
+        data={recipes}
+        count={count}
+        limit={limit}
+        onPageChange={fetchRecipes}
+        item={(data) => (
+          <RecipeCard
+            key={data.id}
+            title={data.title}
+            image_url={data.image_url}
+            author={data.author}
+            ratings={data.ratings}
+            prepTime={data.prep_time}
+            cookTime={data.cook_time}
+            ingredients={data.ingredients}
+          ></RecipeCard>
+        )}
+      ></PaginatedList>
+      <Loading loading={loading} />
     </main>
   );
 };
