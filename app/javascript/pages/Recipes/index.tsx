@@ -35,7 +35,7 @@ export default () => {
   const addFilter = (e) => {
     e.preventDefault();
 
-    if (!searchFilters.includes(searchValue)) {
+    if (!!searchValue && !searchFilters.includes(searchValue)) {
       setSearchFilters((current) => [...current, searchValue]);
       // reset to the first page
       setCurrentPage(0);
