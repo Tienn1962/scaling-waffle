@@ -81,7 +81,3 @@ group :test do
   gem 'simplecov'
   gem 'webdrivers'
 end
-
-gem "ffi-yajl", "~> 3.0", require: false
-
-gem "eventmachine", "~> 1.2"

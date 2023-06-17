@@ -15,7 +15,7 @@ console_command = "bin/rails console"
   min_machines_running = 0
 
 [deploy]
-  release_command = "bin/rails db:prepare"
+  release_command = "./prepare-prod.sh"
 
 [build]
   build-target = "prod-api"
