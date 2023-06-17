@@ -7,7 +7,8 @@ RSpec.describe 'Api::V1::Recipes', type: :request do
     subject { JSON.parse(response.body)['recipes'] }
 
     context 'without search params' do
-      before(:each) { create_list(:recipe, 51) }
+      before(:each) { create_list(:recipe, 26) }
+
       it 'returns http success' do
         get '/api/v1/recipes'
         expect(response).to have_http_status(:success)
@@ -15,7 +16,7 @@ RSpec.describe 'Api::V1::Recipes', type: :request do
 
       it 'returns 50 recipes' do
         get '/api/v1/recipes'
-        expect(subject.length).to be(50)
+        expect(subject.length).to be(25)
       end
 
       it 'returns the correct ingredients per page' do
@@ -50,6 +51,39 @@ RSpec.describe 'Api::V1::Recipes', type: :request do
         expect(subject.first['id']).to be(recipe_with_chicken.id)
         expect(subject.last['id']).to be(recipe_with_potatoes.id)
       end
+    end
+  end
+
+  describe 'GET /show' do
+    subject { JSON.parse(response.body)['recipe'] }
+
+    let(:chicken) { create(:ingredient, title: 'chicken breast') }
+    let(:potato) { create(:ingredient, title: '1 potato') }
+    let(:recipe_with_chicken) { create(:recipe, id: 1, ingredients: [chicken]) }
+    let(:recipe_with_potatoes) { create(:recipe, id: 2, ingredients: [potato]) }
+
+    before(:each) do
+      recipe_with_chicken
+      recipe_with_potatoes
+    end
+
+    it 'returns http success' do
+      get '/api/v1/recipes/1'
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns recipe_with_chicken' do
+      get '/api/v1/recipes/1'
+      expect(subject).to eq(
+        JSON.parse(recipe_with_chicken.serializable_hash(include: { ingredients: { only: :title } }).to_json)
+      )
+    end
+
+    it 'returns recipe_with_potatoes' do
+      get '/api/v1/recipes/2'
+      expect(subject).to eq(
+        JSON.parse(recipe_with_potatoes.serializable_hash(include: { ingredients: { only: :title } }).to_json)
+      )
     end
   end
 end
