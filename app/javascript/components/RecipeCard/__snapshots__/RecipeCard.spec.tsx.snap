@@ -6,7 +6,7 @@ exports[`renders a card 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="w-60 card m-5 bg-neutral text-neutral-content"
+        class="w-60 card bg-neutral text-neutral-content"
       >
         <figure>
           <img
@@ -106,7 +106,7 @@ exports[`renders a card 1`] = `
   </body>,
   "container": <div>
     <div
-      class="w-60 card m-5 bg-neutral text-neutral-content"
+      class="w-60 card bg-neutral text-neutral-content"
     >
       <figure>
         <img

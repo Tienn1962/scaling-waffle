@@ -5,6 +5,7 @@ import PaginatedList from "../../components/PaginatedList";
 import Loading from "../../components/Loading";
 import IngredientBadges from "../../components/IngredientBadges";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default () => {
   const [loading, setLoading] = useState(false);
@@ -45,6 +46,8 @@ export default () => {
 
   const removeFilter = (filter: string) => {
     setSearchFilters((current) => [...current.filter((f) => f !== filter)]);
+    // reset to the first page
+    setCurrentPage(0);
   };
 
   useEffect(() => {
@@ -88,16 +91,21 @@ export default () => {
         limit={limit}
         onPageChange={onPageChange}
         item={(data) => (
-          <RecipeCard
-            key={data.id}
-            title={data.title}
-            image_url={data.image_url}
-            author={data.author}
-            ratings={data.ratings}
-            prepTime={data.prep_time}
-            cookTime={data.cook_time}
-            ingredients={data.ingredients}
-          ></RecipeCard>
+          <Link
+            to={`/recipes/${data.id}`}
+            className="m-5"
+          >
+            <RecipeCard
+              key={data.id}
+              title={data.title}
+              image_url={data.image_url}
+              author={data.author}
+              ratings={data.ratings}
+              prepTime={data.prep_time}
+              cookTime={data.cook_time}
+              ingredients={data.ingredients}
+            ></RecipeCard>
+          </Link>
         )}
       ></PaginatedList>
 
