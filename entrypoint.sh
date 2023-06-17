@@ -3,4 +3,4 @@
 bundle
 yarn
 
-exec "$@"
+bin/rails s

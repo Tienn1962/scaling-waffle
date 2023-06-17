@@ -71,6 +71,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'dockerfile-rails', '>= 1.4'
 end
 
 group :test do
@@ -80,3 +81,7 @@ group :test do
   gem 'simplecov'
   gem 'webdrivers'
 end
+
+gem "ffi-yajl", "~> 3.0", require: false
+
+gem "eventmachine", "~> 1.2"

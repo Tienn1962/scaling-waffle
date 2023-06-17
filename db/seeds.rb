@@ -8,16 +8,22 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-source = File.read(File.join(Rails.root, 'db', 'recipes-en.json'))
-json = JSON.parse(source)
+require 'ffi_yajl'
 
-ingredients = []
+source = File.open(File.join(Rails.root, 'db', 'recipes-en.json'))
+begin
+  json = FFI_Yajl::Parser.parse(source, { symbolize_keys: true })
+ensure
+  source.close
+end
+
+ingredients = Set[]
 recipes = []
 links = []
 
 ActiveRecord::Base.transaction do
   json.each do |recipe|
-    recipe['ingredients'].each do |ingredient|
+    recipe[:ingredients].each do |ingredient|
       ingredients << {
         title: ingredient
       }
@@ -29,12 +35,12 @@ ActiveRecord::Base.transaction do
                          # insert_all without a bang ignores duplicates
                          .insert_all(ingredients, returning: %i[title id])
                          # groups all ingredients by title => id for faster reads
-                         .to_h { |ingredient| [ingredient['title'], ingredient['id']] }
+                         .to_h { |ingredient| [ingredient["title"], ingredient["id"]] }
 
   puts 'resolving associations'
   recipe_id = 1
   json.each do |recipe|
-    recipe['ingredients'].each do |ingredient|
+    recipe[:ingredients].each do |ingredient|
       links << {
         ingredient_id: inserted_ingredients[ingredient],
         recipe_id:
@@ -43,14 +49,14 @@ ActiveRecord::Base.transaction do
 
     recipes << {
       id: recipe_id,
-      title: recipe['title'],
-      cook_time: recipe['cook_time'],
-      prep_time: recipe['prep_time'],
-      ratings: recipe['ratings'],
-      cuisine: recipe['cusine'].blank? ? nil : recipe['cuisine'],
-      category: recipe['category'].blank? ? nil : recipe['category'],
-      author: recipe['author'].blank? ? nil : recipe['author'],
-      image_url: recipe['image'].blank? ? nil : recipe['image']
+      title: recipe[:title],
+      cook_time: recipe[:cook_time],
+      prep_time: recipe[:prep_time],
+      ratings: recipe[:ratings],
+      cuisine: recipe[:cusine].blank? ? nil : recipe[:cuisine],
+      category: recipe[:category].blank? ? nil : recipe[:category],
+      author: recipe[:author].blank? ? nil : recipe[:author],
+      image_url: recipe[:image].blank? ? nil : recipe[:image]
     }
 
     recipe_id += 1
