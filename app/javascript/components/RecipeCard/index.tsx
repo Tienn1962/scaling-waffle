@@ -18,7 +18,7 @@ interface Props {
 
 export default (props: Props) => {
   return (
-    <div className="w-60 card m-5 bg-neutral text-neutral-content">
+    <div className="w-60 card bg-neutral text-neutral-content">
       <figure>
         <img
           className="object-fit h-60"
