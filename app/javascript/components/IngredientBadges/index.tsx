@@ -7,9 +7,9 @@ interface Props {
 }
 
 export default (props: Props) => {
-  const onBadgeClick = (badge) => props.onClick(badge);
+  const onBadgeClick = (badge: string) => props.onClick(badge);
 
-  let badges;
+  let badges: React.ReactNode;
 
   if (props.badges.length > 0) {
     badges = props.badges.map((badge) => (

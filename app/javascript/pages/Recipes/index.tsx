@@ -6,6 +6,7 @@ import Loading from "../../components/Loading";
 import IngredientBadges from "../../components/IngredientBadges";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Show from "../../components/Show";
 
 export default () => {
   const [loading, setLoading] = useState(false);
@@ -92,11 +93,11 @@ export default () => {
         onPageChange={onPageChange}
         item={(data) => (
           <Link
+            key={data.id}
             to={`/recipes/${data.id}`}
             className="m-5"
           >
             <RecipeCard
-              key={data.id}
               title={data.title}
               image_url={data.image_url}
               author={data.author}
@@ -109,7 +110,9 @@ export default () => {
         )}
       ></PaginatedList>
 
-      <Loading loading={loading} />
+      <Show if={loading}>
+        <Loading />
+      </Show>
     </main>
   );
 };

@@ -1,3 +1,4 @@
+import Show from "../Show";
 import React from "react";
 import {
   ClockIcon,
@@ -28,22 +29,26 @@ export default (props: Props) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{props.title}</h2>
-        {props.author && (
+
+        <Show if={!!props.author}>
           <div className="flex">
             <UserIcon className="h-6 w-6" />
             <span className="pl-2">{props.author}</span>
           </div>
-        )}
+        </Show>
+
         <div className="flex">
           <ClockIcon className="h-6 w-6" />
           <span className="pl-2">
             {props.prepTime}m | {props.cookTime}m
           </span>
         </div>
+
         <div className="flex">
           <StarIcon className="h-6 w-6" />
           <span className="pl-2">{props.ratings}/5</span>
         </div>
+
         <div className="flex">
           <ShoppingCartIcon className="h-6 w-6" />
           <span className="pl-2">{props.ingredients.length} ingredients</span>
