@@ -1,9 +1,8 @@
 import axios from "axios";
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import Recipe from ".";
 import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
 
 jest.mock("axios");
 

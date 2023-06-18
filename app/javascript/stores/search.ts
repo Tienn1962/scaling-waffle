@@ -26,8 +26,6 @@ const searchSlice = createSlice({
     },
 
     setPage(state, action: PayloadAction<number>) {
-      console.log("action =>", action);
-
       state.page = action.payload;
     },
   },

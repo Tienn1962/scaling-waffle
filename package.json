@@ -32,7 +32,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "transform": {
-      "^.+\\.tsx$": "babel-jest"
+      "^.+\\.tsx?$": "babel-jest"
     }
   }
 }
