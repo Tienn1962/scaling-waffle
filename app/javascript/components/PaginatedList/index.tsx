@@ -6,6 +6,7 @@ interface Props<T> {
   data: T[];
   count: number;
   limit: number;
+  page: number;
   item: (datum: T) => React.ReactNode;
   onPageChange: (page: number) => void;
 }
@@ -33,6 +34,7 @@ export default <T,>(props: Props<T>) => {
           onPageChange={handlePageChange}
           nextLabel={<ArrowRightIcon className="h-6 w-6" />}
           previousLabel={<ArrowLeftIcon className="h-6 w-6" />}
+          forcePage={props.page}
         />
       </div>
     </>
