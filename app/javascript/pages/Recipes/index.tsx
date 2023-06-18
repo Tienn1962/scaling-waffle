@@ -6,21 +6,28 @@ import Loading from "../../components/Loading";
 import IngredientBadges from "../../components/IngredientBadges";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Show from "../../components/Show";
+import search, { SearchState } from "../../stores/search";
+import { useDispatch, useSelector } from "react-redux";
 
 export default () => {
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   const [count, setCount] = useState<number>(0);
   const [limit, setLimit] = useState<number>(0);
-  const [currentPage, setCurrentPage] = useState(0);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [searchFilters, setSearchFilters] = useState<string[]>([]);
+  const filters = useSelector((state: SearchState) => state.filters);
+  const page = useSelector((state: SearchState) => state.page);
+  const dispatch = useDispatch();
 
   const fetchRecipes = async () => {
     setLoading(true);
 
     const response = await axios.get("/api/v1/recipes", {
-      params: { page: currentPage, ingredients: searchFilters },
+      params: {
+        page: page,
+        ingredients: filters,
+      },
     });
 
     setRecipes(response.data.recipes);
@@ -30,29 +37,25 @@ export default () => {
   };
 
   const onPageChange = (page: number) => {
-    setCurrentPage(page);
+    dispatch(search.actions.setPage(page));
   };
 
   const addFilter = (e) => {
     e.preventDefault();
 
-    if (!!searchValue && !searchFilters.includes(searchValue)) {
-      setSearchFilters((current) => [...current, searchValue]);
-      // reset to the first page
-      setCurrentPage(0);
+    if (!!searchValue) {
+      dispatch(search.actions.addFilter(searchValue));
     }
     setSearchValue("");
   };
 
   const removeFilter = (filter: string) => {
-    setSearchFilters((current) => [...current.filter((f) => f !== filter)]);
-    // reset to the first page
-    setCurrentPage(0);
+    dispatch(search.actions.removeFilter(filter));
   };
 
   useEffect(() => {
     fetchRecipes();
-  }, [currentPage, searchFilters]);
+  }, [filters, page]);
 
   return (
     <main className="m-60 flex flex-col items-center justify-center">
@@ -80,7 +83,7 @@ export default () => {
       </form>
       <div className="m-10">
         <IngredientBadges
-          badges={searchFilters}
+          badges={filters}
           onClick={removeFilter}
         />
       </div>
@@ -89,14 +92,15 @@ export default () => {
         data={recipes}
         count={count}
         limit={limit}
+        page={page}
         onPageChange={onPageChange}
         item={(data) => (
           <Link
+            key={data.id}
             to={`/recipes/${data.id}`}
             className="m-5"
           >
             <RecipeCard
-              key={data.id}
               title={data.title}
               image_url={data.image_url}
               author={data.author}
@@ -109,7 +113,9 @@ export default () => {
         )}
       ></PaginatedList>
 
-      <Loading loading={loading} />
+      <Show if={loading}>
+        <Loading />
+      </Show>
     </main>
   );
 };

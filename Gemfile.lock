@@ -93,7 +93,6 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
-    ffi (1.15.5)
     fuubar (2.5.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
@@ -109,9 +108,6 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
-    json-stream (0.2.1)
-    json-streamer (2.1.0)
-      json-stream
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -242,8 +238,6 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yajl-ffi (0.1.2)
-      ffi (~> 1.9)
     zeitwerk (2.6.8)
 
 PLATFORMS
@@ -260,7 +254,6 @@ DEPENDENCIES
   fuubar
   jbuilder
   jsbundling-rails
-  json-streamer
   pg (~> 1.1)
   pg_search (~> 2.3)
   pry
@@ -276,7 +269,6 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  yajl-ffi
 
 RUBY VERSION
    ruby 3.1.4p223
