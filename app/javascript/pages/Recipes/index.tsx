@@ -81,6 +81,7 @@ export default () => {
           <PlusCircleIcon className="w-6 h-6" />
         </button>
       </form>
+
       <div className="m-10">
         <IngredientBadges
           badges={filters}

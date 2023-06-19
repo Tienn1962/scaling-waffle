@@ -32,15 +32,15 @@ const response = { data: { recipes, pagination: { count: 2, limit: 1 } } };
 (axios.get as jest.Mock).mockResolvedValue(response);
 
 it("renders a list of recipes", async () => {
-  const component = await act(async () => {
+  const component = await act(async () =>
     render(
       <Provider store={store}>
         <MemoryRouter>
           <Recipes />
         </MemoryRouter>
       </Provider>
-    );
-  });
+    )
+  );
 
   expect(component).toMatchSnapshot();
 });
