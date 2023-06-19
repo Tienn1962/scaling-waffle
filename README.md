@@ -21,13 +21,21 @@ To run tests, a specific docker compose service exists :
 docker compose run --rm tests
 ```
 
+## Database structure
+
+A very simple structure that allows to keep each ingredient as a unique identifier.
+
+Note ActiveRecord's internal tables are intentionally ignored.
+
+![Database Structure](./concept/uml.png)
+
 ## Improvements
 
 - It would probably be a good idea to add a tsvector column to recipes
   to drastically improve the performance of the search feature
 
-- A Next application would be more flexible to expand further, while
-  also getting some bonus benefits (SSR, etc)
+- A seperate Next application would be more flexible to expand further, while
+  also getting some bonus benefits (SSR, routing, etc)
 
-- Additionnally, adding the filters and current page in the URL would allow
+- Adding the filters and current page in the URL (or local storage) would allow
   to reuse them when reloading the list

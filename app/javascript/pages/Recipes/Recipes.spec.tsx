@@ -10,6 +10,7 @@ jest.mock("axios");
 
 const recipes = [
   {
+    id: 1,
     author: "John Recipe",
     prep_time: 10,
     cook_time: 10,
@@ -18,6 +19,7 @@ const recipes = [
     ingredients: [{ title: "3 potatoes" }, { title: "chicken breast" }],
   },
   {
+    id: 2,
     author: "Jane Recipe",
     prep_time: 10,
     cook_time: 10,
