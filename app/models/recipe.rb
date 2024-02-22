@@ -4,8 +4,8 @@ class Recipe < ApplicationRecord
   include ActiveModel::Serialization
   include PgSearch::Model
 
-  pg_search_scope :by_ingredient, associated_against: { ingredients: :title }, using: {
-    tsearch: { dictionary: 'english' }
+  pg_search_scope :by_ingredient, using: {
+    tsearch: { dictionary: 'english', tsvector_column: :searchable }
   }
 
   has_many :ingredients_recipes

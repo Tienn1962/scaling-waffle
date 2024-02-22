@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_191622) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_112021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_191622) do
   create_table "ingredients_recipes", force: :cascade do |t|
     t.bigint "ingredient_id", null: false
     t.bigint "recipe_id", null: false
+    t.index ["ingredient_id"], name: "index_ingredients_recipes_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_ingredients_recipes_on_recipe_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -37,6 +39,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_191622) do
     t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.tsvector "searchable"
+    t.index ["searchable"], name: "index_recipes_on_searchable", using: :gin
   end
 
+  add_foreign_key "ingredients_recipes", "ingredients"
+  add_foreign_key "ingredients_recipes", "recipes"
 end

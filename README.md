@@ -31,9 +31,6 @@ Note ActiveRecord's internal tables are intentionally ignored.
 
 ## Improvements
 
-- It would probably be a good idea to add a tsvector column to recipes
-  to drastically improve the performance of the search feature
-
 - A seperate Next application would be more flexible to expand further, while
   also getting some bonus benefits (SSR, routing, etc)
 

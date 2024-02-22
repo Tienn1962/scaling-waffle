@@ -7,9 +7,16 @@ class Api::V1::RecipesController < ApplicationController
 
     if index_permitted_params[:ingredients]&.length&.positive?
       query = query.by_ingredient(index_permitted_params[:ingredients])
+
+      count = query.count
+      query = query.left_joins(:ingredients_recipes)
+                   .group(:id, "#{PgSearch::Configuration.alias('recipes')}.rank")
+                   .reorder('COUNT(ingredients_recipes.ingredient_id) ASC')
+                   .limit(limit).offset(index_permitted_params[:page].to_i * limit)
+    else
+      count = query.count
     end
 
-    count = query.count
     recipes = query.limit(limit).offset(index_permitted_params[:page].to_i * limit)
 
     render json: {
